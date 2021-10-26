@@ -1,0 +1,49 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+  Pokemon Pokedex
+{% endblock %}
+
+{% block content %}
+    <h1>Search the Pokedex</h1>
+    <form method="POST" action="/pokemon">
+    <div class="mb-3">
+        <label for="pokemon" class="form-label">Pokemon Name</label>
+        <input type="text" name="pokemon" class="form-control" id="name">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% if pokemons %}
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Pokemon Name</th>
+            <th scope="col">Ability</th>
+            <th scope="col">Base Experience</th>
+            <th scope="col">Base HP</th>
+            <th scope="col">Base Defense</th>
+            <th scope="col">Base Attack</th>
+            <th scope="col">Front Shiny</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pokemon in pokemons %}
+                <tr>
+                    <th scope="row">{{pokemon.name}}</th>
+                    <td>{{pokemon.ability}}</td>
+                    <td>{{pokemon.base_experience}}</td>
+                    <td>{{pokemon.base_hp}}</td>
+                    <td>{{pokemon.base_defense}}</td>
+                    <td>{{pokemon.base_attack}}</td>
+                    <td>{{pokemon.front_shiny}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    {% else %}
+        Enter Pokemon you want to search for
+    {% endif %}
+
+{% endblock %}
