@@ -6,14 +6,20 @@
 
 {% block content %}
     <h1>Search the Pokedex</h1>
-    <form method="POST" action="/pokemon">
-    <div class="mb-3">
-        <label for="pokemon" class="form-label">Pokemon Name</label>
-        <input type="text" name="pokemon" class="form-control" id="name">
-    </div>
+    <form action="{{url_for('pokemon')}}" method="POST">
+        <div>
+            {{form.search.label(class="form-label")}}
+            {{form.search(class="form-control")}}
+        <small style="color:red;">{{error}}</small>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <br>
+        </div>
+            {{form.submit(class="btn btn-primary form-control")}}
+        </div>
+
     </form>
+    
 
     {% if pokemons %}
         <table class="table">
@@ -42,8 +48,6 @@
             {% endfor %}
         </tbody>
         </table>
-    {% else %}
-        Enter Pokemon you want to search for
     {% endif %}
 
 {% endblock %}
